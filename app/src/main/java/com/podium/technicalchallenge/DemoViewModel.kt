@@ -3,28 +3,34 @@ package com.podium.technicalchallenge
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.podium.technicalchallenge.entity.MovieEntity
-import kotlinx.coroutines.Dispatchers
+import com.podium.technicalchallenge.data.Result
+import com.podium.technicalchallenge.data.sources.genres.GenresRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class DemoViewModel : ViewModel() {
-    val TAG = "DemoViewModel"
+@HiltViewModel
+class DemoViewModel @Inject constructor(
+    private val genresRepository: GenresRepository
+) : ViewModel() {
 
     fun getMovies() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val result = try {
-                Repo.getInstance().getMovies()
-            } catch (e: Exception) {
-                Result.Error(e)
-            }
+        viewModelScope.launch() {
+            val result = genresRepository.getAllGenres(false)
             when (result) {
-                is Result.Success<List<MovieEntity>?> -> {
-                    Log.d(TAG, "movies= " + result.data)
+                is Result.Success -> {
+                    val genres = result.data
+                    Log.d(LOG_TAG, "genres=$genres")
                 }
-                else -> {
-                    Log.e(TAG, "movies= " + result)
+
+                is Result.Error -> {
+                    Log.e(LOG_TAG, "error while getting the genres", result.exception)
                 }
             }
         }
+    }
+
+    companion object {
+        const val LOG_TAG = "DemoViewModel"
     }
 }

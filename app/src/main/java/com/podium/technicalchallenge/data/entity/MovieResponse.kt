@@ -1,4 +1,4 @@
-package com.podium.technicalchallenge.entity
+package com.podium.technicalchallenge.data.entity
 
 data class MovieResponse(
     val data: Movies

@@ -1,4 +1,4 @@
-package com.podium.technicalchallenge.network
+package com.podium.technicalchallenge.data.network
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

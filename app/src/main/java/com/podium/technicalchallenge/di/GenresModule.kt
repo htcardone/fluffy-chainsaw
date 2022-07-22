@@ -1,10 +1,10 @@
 package com.podium.technicalchallenge.di
 
-import com.podium.technicalchallenge.data.sources.genres.GenresDataSource
-import com.podium.technicalchallenge.data.sources.genres.DefaultGenresRepository
-import com.podium.technicalchallenge.data.sources.genres.remote.GenresRemoteDataSource
-import com.podium.technicalchallenge.data.sources.genres.GenresRepository
 import com.podium.technicalchallenge.data.network.retrofit.GraphQLService
+import com.podium.technicalchallenge.data.sources.genres.DefaultGenresRepository
+import com.podium.technicalchallenge.data.sources.genres.GenresDataSource
+import com.podium.technicalchallenge.data.sources.genres.GenresRepository
+import com.podium.technicalchallenge.data.sources.genres.remote.GenresRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataModule {
+object GenresModule {
 
     @Qualifier
     annotation class RemoteGenresDataSource

@@ -1,7 +1,6 @@
-package com.podium.technicalchallenge.data.genres
+package com.podium.technicalchallenge.data.sources.genres
 
 import com.podium.technicalchallenge.data.Result
-import com.podium.technicalchallenge.data.sources.genres.GenresDataSource
 
 class GenresFakeDataSource(
     private val genres: MutableList<String> = mutableListOf(),

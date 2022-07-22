@@ -1,9 +1,7 @@
-package com.podium.technicalchallenge.data.genres
+package com.podium.technicalchallenge.data.sources.genres
 
 import com.google.common.truth.Truth.assertThat
 import com.podium.technicalchallenge.data.Result
-import com.podium.technicalchallenge.data.sources.genres.DefaultGenresRepository
-import com.podium.technicalchallenge.data.sources.genres.GenresRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

@@ -1,20 +1,25 @@
 package com.podium.technicalchallenge
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import com.podium.technicalchallenge.databinding.ActivityMainBinding
+import androidx.navigation.compose.rememberNavController
+import com.podium.technicalchallenge.navigation.MyNavHost
+import com.podium.technicalchallenge.ui.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContent { 
+            MyTheme {
+                val navController = rememberNavController()
+                MyNavHost(navController = navController)
+            }
+        }
 
     }
 }

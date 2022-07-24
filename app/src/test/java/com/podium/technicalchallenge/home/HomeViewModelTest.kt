@@ -51,7 +51,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `when can't load the Movies, should show a error`() = runTest {
+    fun `when can't load the Movies, should hide loading and show a error`() = runTest {
         // Given
         moviesDataSource.isOffline = true
 
@@ -66,7 +66,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `when can't load the Genres, should show a error`() = runTest {
+    fun `when can't load the Genres, should hide loading and show a error`() = runTest {
         // Given
         genresDataSource.isOffline = true
 
@@ -81,7 +81,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `when Movies are load, should disable loading and error`() = runTest {
+    fun `when Movies are load, should hide loading and error`() = runTest {
         // When
         viewModel.start()
 
@@ -92,7 +92,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `when Genres are load, should disable loading and error`() = runTest {
+    fun `when Genres are load, should hide loading and error`() = runTest {
         // When
         viewModel.start()
 
@@ -126,9 +126,11 @@ class HomeViewModelTest {
     @Test
     fun `when load Movies error is shown, should clear the error`() = runTest {
         // Given
-        val error = HomeViewStateErrors.ERROR_GETTING_TOP_MOVIES
+        moviesDataSource.isOffline = true
+        viewModel.start()
 
         // When
+        val error = HomeViewStateErrors.ERROR_GETTING_TOP_MOVIES
         viewModel.onErrorShow(error, false)
 
         // Then
@@ -139,9 +141,11 @@ class HomeViewModelTest {
     @Test
     fun `when load Genres error is shown, should clear the error`() = runTest {
         // Given
-        val error = HomeViewStateErrors.ERROR_GETTING_GENRES
+        genresDataSource.isOffline = true
+        viewModel.start()
 
         // When
+        val error = HomeViewStateErrors.ERROR_GETTING_GENRES
         viewModel.onErrorShow(error, false)
 
         // Then

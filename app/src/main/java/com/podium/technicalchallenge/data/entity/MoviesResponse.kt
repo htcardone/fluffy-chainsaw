@@ -29,8 +29,11 @@ data class MovieFullEntity(
     val title: String,
     val releaseDate: String,
     val voteAverage: Float,
+    val voteCount: Int,
+    val runtime: Int,
     val overview: String,
     val posterPath: String?,
+    val genres: List<String>,
     val director: DirectorEntity,
     val cast: List<CastEntity>
 )

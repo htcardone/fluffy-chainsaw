@@ -37,10 +37,12 @@ object Queries {
             releaseDate
             genres
             voteAverage
+            voteCount
             popularity
             releaseDate
             posterPath
             overview
+            runtime
             cast {
               name
               profilePath

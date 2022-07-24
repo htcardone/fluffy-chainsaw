@@ -26,6 +26,7 @@ import com.google.accompanist.placeholder.material.fade
 import com.google.accompanist.placeholder.material.placeholder
 import com.podium.technicalchallenge.R
 import com.podium.technicalchallenge.data.entity.MovieEntity
+import com.podium.technicalchallenge.home.HomeViewEvent
 import com.podium.technicalchallenge.home.HomeViewState
 import com.podium.technicalchallenge.ui.components.GenreButton
 import com.podium.technicalchallenge.ui.theme.*
@@ -200,10 +201,10 @@ private fun Poster(modifier: Modifier = Modifier, path: String?) {
             dropOff = 0.65f,
             tilt = 20f
         ),
-        previewPlaceholder = R.drawable.poster
-        // TODO set placeholder and error images when loading movie Poster
-        //placeHolder = ImageBitmap.imageResource(R.drawable.ic_home_black_24dp),
-        //error = ImageBitmap.imageResource(R.drawable.ic_home_black_24dp),
+        previewPlaceholder = R.drawable.poster,
+        failure = {
+            Text(text = stringResource(id = R.string.error_loading_image))
+        }
     )
 }
 
@@ -255,7 +256,7 @@ private fun MovieItem(movie: MovieEntity, onMovieClick: (Int) -> Unit) {
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = Typography.caption,
-            letterSpacing = 0.1.sp
+            letterSpacing = 0.sp
         )
     }
 }
@@ -266,7 +267,7 @@ private fun MovieItemPlaceHolder() {
         modifier = Modifier.width(120.dp),
         verticalArrangement = Arrangement.Bottom
     ) {
-        Surface(
+        Box(
             modifier = Modifier
                 .width(120.dp)
                 .height(180.dp)
@@ -274,11 +275,11 @@ private fun MovieItemPlaceHolder() {
                     visible = true,
                     highlight = PlaceholderHighlight.fade()
                 )
-        ) {}
+        )
 
         Spacer(modifier = Modifier.height(4.dp))
 
-        Surface(
+        Box(
             modifier = Modifier
                 .width(80.dp)
                 .height(14.dp)
@@ -286,7 +287,7 @@ private fun MovieItemPlaceHolder() {
                     visible = true,
                     highlight = PlaceholderHighlight.fade()
                 )
-        ) {}
+        )
     }
 }
 

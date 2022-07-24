@@ -5,4 +5,6 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class MoviesApp: Application() {
+
+    // TODO add StrictMode
 }

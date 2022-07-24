@@ -16,4 +16,5 @@
     <!-- General -->
     <string name="try_again">Try Again</string>
     <string name="error_loading">Error loading the data.</string>
+    <string name="error_loading_image">image request failed.</string>
 </resources>

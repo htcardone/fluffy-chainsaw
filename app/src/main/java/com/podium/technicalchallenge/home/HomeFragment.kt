@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.podium.technicalchallenge.R
 import com.podium.technicalchallenge.home.ui.HomeScreen
-import com.podium.technicalchallenge.home.ui.HomeViewEvent
 import com.podium.technicalchallenge.ui.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -46,8 +45,9 @@ class HomeFragment : Fragment() {
     }
 
     /*
-    Some events (like the navigation ones) doesn't need to be handled by the ViewModel, since they
-    don't deal with state. This way, we avoid the exposure of one-time events from the ViewModel.
+    Some events (like navigation and analytics) doesn't need to be handled by the ViewModel,
+    since they don't deal with state. This way, we avoid the exposure of one-time events from the
+    ViewModel.
      */
     private fun handleEvent(event: HomeViewEvent) {
         when (event) {

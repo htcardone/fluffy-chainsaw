@@ -1,6 +1,4 @@
-package com.podium.technicalchallenge.home.ui
-
-import com.podium.technicalchallenge.home.HomeViewStateErrors
+package com.podium.technicalchallenge.home
 
 sealed class HomeViewEvent {
     object OnViewAllClicked: HomeViewEvent()

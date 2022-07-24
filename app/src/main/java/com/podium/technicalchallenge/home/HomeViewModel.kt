@@ -79,9 +79,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun onErrorShow(error: HomeViewStateErrors, tryAgain: Boolean) {
+        viewState = viewState.copy(errorMessage = null)
+        viewStateLiveData.value = viewState
+
         when (error) {
             HomeViewStateErrors.ERROR_GETTING_GENRES -> {
-                viewState = viewState.copy(errorMessage = null)
                 if (tryAgain) {
                     viewModelScope.launch {
                         loadGenres()
@@ -90,7 +92,6 @@ class HomeViewModel @Inject constructor(
             }
 
             HomeViewStateErrors.ERROR_GETTING_TOP_MOVIES -> {
-                viewState = viewState.copy(errorMessage = null)
                 if (tryAgain) {
                     viewModelScope.launch {
                         loadTopMovies()
@@ -98,7 +99,5 @@ class HomeViewModel @Inject constructor(
                 }
             }
         }
-
-        viewStateLiveData.value = viewState
     }
 }

@@ -25,8 +25,12 @@ class MoviesRepositoryTest {
     )
 
     private val fullMoviesFakes = listOf(
-        MovieFullEntity(0, "Movie 0", "", 1f, "", null, DirectorEntity(0, "Director"), emptyList()),
-        MovieFullEntity(1, "Movie 1", "", 1f, "", null, DirectorEntity(0, "Director"), emptyList())
+        MovieFullEntity(0, "Movie 0", "", 1f, 1, 60,
+            "", null, listOf("Action"), DirectorEntity(0, "Director"),
+            emptyList()),
+        MovieFullEntity(1, "Movie 1", "", 1f, 1, 60,
+            "", null, listOf("Action"), DirectorEntity(0, "Director"),
+            emptyList())
     )
 
     @Test

@@ -12,6 +12,6 @@ data class HomeViewState (
 
 enum class HomeViewStateErrors {
     ERROR_GETTING_GENRES,
-    ERROR_GETTING_TOP_MOVIES
+    ERROR_GETTING_TOP_MOVIES,
 }
 

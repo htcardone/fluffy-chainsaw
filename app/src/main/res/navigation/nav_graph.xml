@@ -34,5 +34,9 @@
         <action
             android:id="@+id/action_moviesFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
+        <argument
+            android:name="genre"
+            app:argType="string"
+            app:nullable="true" />
     </fragment>
 </navigation>

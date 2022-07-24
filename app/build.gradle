@@ -7,8 +7,8 @@ plugins {
 }
 
 android {
-    compileSdk 31
-    buildToolsVersion = "30.0.3"
+    compileSdk 32
+
     defaultConfig {
         applicationId "com.podium.app"
         minSdk 26
@@ -65,7 +65,11 @@ dependencies {
     implementation "com.squareup.okhttp3:okhttp:4.9.3"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
     implementation "com.squareup.okhttp3:okhttp-urlconnection:4.9.3"
+
     implementation 'com.google.code.gson:gson:2.9.0'
+
+    // Image Loading
+    implementation "com.github.skydoves:landscapist-glide:1.5.3"
 
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.4.2"
@@ -83,6 +87,10 @@ dependencies {
     debugImplementation "androidx.compose.ui:ui-tooling:1.1.1"
     debugImplementation "androidx.compose.ui:ui-test-manifest:1.1.1"
 
+    // UI Components
+    implementation "com.google.accompanist:accompanist-flowlayout:0.23.1"
+    implementation "com.google.accompanist:accompanist-placeholder-material:0.23.1"
+
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation "com.squareup.retrofit2:converter-scalars:2.7.1"
@@ -97,7 +105,6 @@ dependencies {
     testImplementation 'org.robolectric:robolectric:4.8.1'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'android.arch.core:core-testing:1.1.1'
-    testImplementation "org.mockito:mockito-core:3.10.0"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
     testImplementation 'com.google.truth:truth:1.1.2'
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4:1.1.1'

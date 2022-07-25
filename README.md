@@ -36,4 +36,4 @@ This project has the following tests:
   - Movie screen content loading and interactions
   - Movie screen navigation to the Movies screen
 
-All these tests are configured to run a [CI pipeline](https://app.bitrise.io/app/e2c65fd1f7dd8e85).
+All these tests are configured to run on a [CI pipeline](https://app.bitrise.io/app/e2c65fd1f7dd8e85).

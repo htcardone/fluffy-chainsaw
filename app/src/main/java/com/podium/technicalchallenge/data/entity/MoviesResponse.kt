@@ -1,21 +1,28 @@
 package com.podium.technicalchallenge.data.entity
 
+import androidx.annotation.Keep
+
+@Keep
 data class MoviesResponse(
     val data: Movies
 )
 
+@Keep
 data class MovieResponse(
     val data: Movie?
 )
 
+@Keep
 data class Movies(
     val movies: List<MovieEntity>
 )
 
+@Keep
 data class Movie(
     val movie: MovieFullEntity
 )
 
+@Keep
 data class MovieEntity(
     val id: Int,
     val title: String,
@@ -24,6 +31,7 @@ data class MovieEntity(
     val posterPath: String?
 )
 
+@Keep
 data class MovieFullEntity(
     val id: Int,
     val title: String,
@@ -38,11 +46,13 @@ data class MovieFullEntity(
     val cast: List<CastEntity>
 )
 
+@Keep
 data class CastEntity(
     val name: String,
     val profilePath: String?
 )
 
+@Keep
 data class DirectorEntity(
     val id: Int,
     val name: String

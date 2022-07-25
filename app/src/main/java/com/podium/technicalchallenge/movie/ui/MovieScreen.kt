@@ -54,7 +54,9 @@ fun MovieScreen(
     ) {
         if (viewState.isLoading) {
             Row(
-                modifier = Modifier.fillMaxWidth().padding(DefaultPadding),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(DefaultPadding),
                 horizontalArrangement = Arrangement.Center
             ) {
                 CircularProgressIndicator()
@@ -112,7 +114,8 @@ private fun MovieContent(movie: MovieFullEntity, sendEvent: (MovieViewEvent) -> 
             vertical = 2.dp,
             horizontal = DefaultPadding
         ),
-        text = "${movie.runtime} min | ${movie.releaseDate.substringBefore("-")}",
+        text = stringResource(id = R.string.movies_runtime_year, movie.runtime,
+            movie.releaseDate.substringBefore("-")),
         color = Color.White,
         style = Typography.caption
     )
@@ -132,7 +135,7 @@ private fun MovieContent(movie: MovieFullEntity, sendEvent: (MovieViewEvent) -> 
             top = DefaultPadding, bottom = HalfPadding,
             start = DefaultPadding, end = DefaultPadding
         ),
-        text = "Genres",
+        text = stringResource(id = R.string.movie_genres),
         color = Color.White,
         fontWeight = FontWeight.Light,
         fontSize = 16.sp
@@ -150,7 +153,7 @@ private fun MovieContent(movie: MovieFullEntity, sendEvent: (MovieViewEvent) -> 
             top = DefaultPadding, bottom = HalfPadding,
             start = DefaultPadding, end = DefaultPadding
         ),
-        text = "Cast",
+        text = stringResource(id = R.string.movie_cast),
         color = Color.White,
         fontWeight = FontWeight.Light,
         fontSize = 16.sp
@@ -163,7 +166,7 @@ private fun MovieContent(movie: MovieFullEntity, sendEvent: (MovieViewEvent) -> 
             top = DefaultPadding, bottom = HalfPadding,
             start = DefaultPadding, end = DefaultPadding
         ),
-        text = "Directed by",
+        text = stringResource(id = R.string.movie_directed_by),
         color = Color.White,
         fontWeight = FontWeight.Light,
         fontSize = 16.sp

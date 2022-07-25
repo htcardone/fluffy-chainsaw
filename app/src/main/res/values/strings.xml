@@ -27,6 +27,12 @@
     <string name="movies_sort_by_rating">Rating</string>
     <string name="movies_sort_by_popularity">Popularity</string>
 
+    <!-- Movie Screen -->
+    <string name="movies_runtime_year">%1$d min | %2$s</string>
+    <string name="movie_genres">Genres</string>
+    <string name="movie_cast">Cast</string>
+    <string name="movie_directed_by">Directed by</string>
+
     <!-- General -->
     <string name="genre_all">All</string>
     <string name="try_again">Try Again</string>

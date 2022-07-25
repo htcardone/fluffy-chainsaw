@@ -36,6 +36,7 @@ import com.podium.technicalchallenge.data.entity.DirectorEntity
 import com.podium.technicalchallenge.data.entity.MovieFullEntity
 import com.podium.technicalchallenge.movie.MovieViewEvent
 import com.podium.technicalchallenge.movie.MovieViewState
+import com.podium.technicalchallenge.ui.components.ErrorSnackBar
 import com.podium.technicalchallenge.ui.components.GenreButton
 import com.podium.technicalchallenge.ui.theme.*
 import com.skydoves.landscapist.CircularReveal
@@ -72,13 +73,8 @@ fun MovieScreen(
             }
 
             viewState.errorMessage?.let { error ->
-                // TODO change message based on error
-                val message = stringResource(id = R.string.error_loading)
-                val actionLabel = stringResource(id = R.string.try_again)
-                showErrorSnackBar(
-                    message,
-                    actionLabel,
-                    scaffoldState,
+                ErrorSnackBar(
+                    scaffoldState = scaffoldState,
                     onDismiss = {
                         sendEvent(MovieViewEvent.OnErrorShown(error, false))
                     },

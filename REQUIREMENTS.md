@@ -27,7 +27,7 @@ Once the required steps are completed and if you'd like to further showcase your
 
 - [ ] Add a search bar that allows searching on 2 or more fields of the movie object.
 - [ ] Add pagination.
-- [ ] Lazy load the images of the movie item component so they only appear once the component is visible.
+- [x] Lazy load the images of the movie item component so they only appear once the component is visible.
 - [ ] Add at least one chart or graph representing anything you feel is helpful to the end user.
 - [ ] Add functionality where clicking on an image preview in the first section expands the image in a modal.
 - [ ] Add any custom feature you think would benefit the end user.

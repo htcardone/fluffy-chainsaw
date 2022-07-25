@@ -6,10 +6,12 @@ Submitted by: Henrique Cardone (htcardone@gmail.com)
 This project was developed based on the [original one](https://github.com/podium/Android-Challenge), and on the [requirements](REQUIREMENTS.md) sent by email.
 
 ## Screeenshots
-<img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768019.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768031.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768037.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768052.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768057.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768062.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768112.png?raw=true" alt="drawing" width="200"/>
+<img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/images/Screenshot_1658768019.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/images/Screenshot_1658768031.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/images/Screenshot_1658768037.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/images/Screenshot_1658768052.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/images/Screenshot_1658768057.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/images/Screenshot_1658768062.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/images/Screenshot_1658768112.png?raw=true" alt="drawing" width="200"/>
 
 ## Architecture
 This app was implemented based on the latest [Google's app architecture guide](https://developer.android.com/topic/architecture), so it contains the following layers:
+
+![](https://github.com/htcardone/fluffy-chainsaw/blob/main/images/diagram.png?raw=true)
 
 ### UI Layer
 The UI was made using **Jetpack Compose**, and all its state was hoisted to a ViewModel. Also, this implementation follows a **unidirectional data flow**, in a way that we have classes to represent the state and classes to map the user's events.

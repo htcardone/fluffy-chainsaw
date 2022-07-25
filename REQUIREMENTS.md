@@ -11,16 +11,16 @@ Base project with dependencies are set up. Please have this forked and running b
 Your task is to build an application around a list of popular movies. The backend is a GraphQL API, which is available at: https://podium-fe-challenge-2021.netlify.app/.netlify/functions/graphql
 
 ## Requirements
-- [ ] Create a view with the following sections:
-  - [ ] “Movies: Top 5”: Lists the top 5 movies of the data set, according to rating.
-  - [ ] “Browse by Genre”: Lists available genres.
-  - [ ] “Browse by All”: Lists available movies.
-- [ ] Pressing a movie navigates to a detailed view of the movie.
-  - [ ] Include title, rating, genres, poster, and description
-  - [ ] List the cast
-  - [ ] List the director
-- [ ] Pressing a genre navigates to a new view showing the category and associated movies.
-- [ ] The “Browse by All” and Genre view allows the user to sort the list of movies by an order of their choice (i.e. popularity).
+- [x] Create a view with the following sections:
+  - [x] “Movies: Top 5”: Lists the top 5 movies of the data set, according to rating.
+  - [x] “Browse by Genre”: Lists available genres.
+  - [x] “Browse by All”: Lists available movies.
+- [x] Pressing a movie navigates to a detailed view of the movie.
+  - [x] Include title, rating, genres, poster, and description
+  - [x] List the cast
+  - [x] List the director
+- [x] Pressing a genre navigates to a new view showing the category and associated movies.
+- [x] The “Browse by All” and Genre view allows the user to sort the list of movies by an order of their choice (i.e. popularity).
 
 ### Optional
 Once the required steps are completed and if you'd like to further showcase your skills, you may optionally choose from any of the following:

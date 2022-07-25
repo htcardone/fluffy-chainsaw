@@ -10,14 +10,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.podium.technicalchallenge.R
+import com.podium.technicalchallenge.data.network.queries.OrderBy
+import com.podium.technicalchallenge.data.network.queries.Sort
 import com.podium.technicalchallenge.home.ui.HomeScreen
+import com.podium.technicalchallenge.movies.MoviesViewEvent
+import com.podium.technicalchallenge.movies.MoviesViewModel
 import com.podium.technicalchallenge.ui.theme.MyTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private val homeViewModel: HomeViewModel by viewModels()
+    private val moviesViewModel: MoviesViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +31,7 @@ class HomeFragment : Fragment() {
         val composeView: ComposeView = view.findViewById(R.id.compose_view_home)
 
         composeView.setContent {
-            homeViewModel.viewStateLiveData.observeAsState().value?.let { viewState ->
+            moviesViewModel.viewStateLiveData.observeAsState().value?.let { viewState ->
                 MyTheme {
                     HomeScreen(
                         viewState = viewState,
@@ -39,7 +43,7 @@ class HomeFragment : Fragment() {
             }
         }
 
-        homeViewModel.start()
+        moviesViewModel.start(5, orderBy = OrderBy.VOTE_AVERAGE, sort = Sort.DESC)
 
         return view
     }
@@ -49,12 +53,21 @@ class HomeFragment : Fragment() {
     since they don't deal with state. This way, we avoid the exposure of one-time events from the
     ViewModel.
      */
-    private fun handleEvent(event: HomeViewEvent) {
+    private fun handleEvent(event: MoviesViewEvent) {
         when (event) {
-            is HomeViewEvent.OnErrorShown -> homeViewModel::onErrorShow
-            is HomeViewEvent.OnGenreClicked -> navigateToGenre(event.genre)
-            is HomeViewEvent.OnMovieClicked -> navigateToMovie(event.movieId)
-            is HomeViewEvent.OnViewAllClicked -> navigateToAllMovies()
+            is MoviesViewEvent.OnErrorShown -> {
+                moviesViewModel.onErrorShow(event.error, event.tryAgain)
+            }
+
+            is MoviesViewEvent.OnGenreClicked -> navigateToGenre(event.genre)
+
+            is MoviesViewEvent.OnMovieClicked -> navigateToMovie(event.movieId)
+
+            is MoviesViewEvent.OnViewAllClicked -> navigateToAllMovies()
+
+            is MoviesViewEvent.OnSortClicked -> {
+                // do nothing
+            }
         }
     }
 
@@ -68,8 +81,10 @@ class HomeFragment : Fragment() {
             .navigate(HomeFragmentDirections.actionHomeFragmentToMovieFragment(movieId))
     }
 
-    private fun navigateToGenre(genre: String) {
-        findNavController()
-            .navigate(HomeFragmentDirections.actionHomeFragmentToMoviesFragment(genre))
+    private fun navigateToGenre(genre: String?) {
+        genre?.let {
+            findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToMoviesFragment(it))
+        }
     }
 }

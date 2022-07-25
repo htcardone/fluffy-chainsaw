@@ -2,10 +2,10 @@ package com.podium.technicalchallenge.data.network.queries
 
 object Queries {
 
-    fun getMoviesQuery(orderBy: OrderBy, sort: Sort, limit: Int) =
+    fun getMoviesQuery(orderBy: String, sort: String, limit: Int) =
     """
         query GetMoviesQuery {
-          movies(limit: $limit, orderBy:"${orderBy.field}", sort: $sort) {
+          movies(limit: $limit, orderBy:"$orderBy", sort: $sort) {
             id
             title
             voteAverage
@@ -15,10 +15,10 @@ object Queries {
     }
     """
 
-    fun getMoviesByGenreQuery(genre: String, orderBy: OrderBy, sort: Sort, limit: Int) =
+    fun getMoviesByGenreQuery(genre: String, orderBy: String, sort: String, limit: Int) =
         """
         query GetMoviesQuery {
-          movies(genre: "$genre", limit: $limit, orderBy:"${orderBy.field}", sort: $sort) {
+          movies(genre: "$genre", limit: $limit, orderBy:"$orderBy", sort: $sort) {
             id
             title
             voteAverage

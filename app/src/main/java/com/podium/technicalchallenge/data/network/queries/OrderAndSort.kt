@@ -1,12 +1,16 @@
 package com.podium.technicalchallenge.data.network.queries
 
-enum class OrderBy(val field: String) {
-    POPULARITY("popularity"),
-    TITLE("title"),
-    VOTE_AVERAGE("voteAverage")
+class OrderBy {
+    companion object {
+        const val POPULARITY = "popularity"
+        const val TITLE = "title"
+        const val VOTE_AVERAGE = "voteAverage"
+    }
 }
 
-enum class Sort {
-    ASC,
-    DESC
+class Sort {
+    companion object {
+        const val ASC = "ASC"
+        const val DESC = "DESC"
+    }
 }

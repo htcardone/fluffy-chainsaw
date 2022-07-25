@@ -1,5 +1,6 @@
 package com.podium.technicalchallenge.data.sources.genres.remote
 
+import android.util.Log
 import com.podium.technicalchallenge.data.Result
 import com.podium.technicalchallenge.data.entity.GenresResponse
 import com.podium.technicalchallenge.data.network.queries.Queries
@@ -23,8 +24,12 @@ class GenresRemoteDataSource(
                 Result.Error(Exception())
             }
         } catch (e: Exception) {
-            // TODO log error on Crashlytics
+            Log.e(LOG_TAG, "getAllGenres", e)
             Result.Error(e)
         }
+    }
+
+    companion object {
+        const val LOG_TAG = "GenresRemoteDataSource"
     }
 }

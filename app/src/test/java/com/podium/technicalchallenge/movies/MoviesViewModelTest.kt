@@ -1,4 +1,4 @@
-package com.podium.technicalchallenge.home
+package com.podium.technicalchallenge.movies
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.google.common.truth.Truth.assertThat
@@ -18,7 +18,7 @@ import org.junit.Test
 import org.junit.rules.TestRule
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class HomeViewModelTest {
+class MoviesViewModelTest {
 
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
@@ -30,7 +30,7 @@ class HomeViewModelTest {
     private lateinit var genresDataSource: GenresFakeDataSource
     private lateinit var moviesRepository: MoviesRepository
     private lateinit var genresRepository: GenresRepository
-    private lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: MoviesViewModel
 
     private val genresFakes = listOf("Action", "Crime", "Comedy")
     private val moviesFakes = listOf(
@@ -47,7 +47,7 @@ class HomeViewModelTest {
         genresDataSource = GenresFakeDataSource(genresFakes.toMutableList())
         moviesRepository = DefaultMoviesRepository(moviesDataSource)
         genresRepository = DefaultGenresRepository(genresDataSource)
-        viewModel = HomeViewModel(moviesRepository, genresRepository)
+        viewModel = MoviesViewModel(moviesRepository, genresRepository)
     }
 
     @Test
@@ -62,7 +62,7 @@ class HomeViewModelTest {
         val resultState = viewModel.viewStateLiveData.value!!
         assertThat(resultState.isLoadingMovies).isFalse()
         assertThat(resultState.isLoadingGenres).isFalse()
-        assertThat(resultState.errorMessage).isEqualTo(HomeViewStateErrors.ERROR_GETTING_TOP_MOVIES)
+        assertThat(resultState.errorMessage).isEqualTo(MoviesStateErrors.ERROR_GETTING_MOVIES)
     }
 
     @Test
@@ -77,7 +77,7 @@ class HomeViewModelTest {
         val resultState = viewModel.viewStateLiveData.value!!
         assertThat(resultState.isLoadingMovies).isFalse()
         assertThat(resultState.isLoadingGenres).isFalse()
-        assertThat(resultState.errorMessage).isEqualTo(HomeViewStateErrors.ERROR_GETTING_GENRES)
+        assertThat(resultState.errorMessage).isEqualTo(MoviesStateErrors.ERROR_GETTING_GENRES)
     }
 
     @Test
@@ -88,7 +88,7 @@ class HomeViewModelTest {
         // Then
         val resultState = viewModel.viewStateLiveData.value!!
         assertThat(resultState.isLoadingMovies).isFalse()
-        assertThat(resultState.errorMessage).isNotEqualTo(HomeViewStateErrors.ERROR_GETTING_TOP_MOVIES)
+        assertThat(resultState.errorMessage).isNotEqualTo(MoviesStateErrors.ERROR_GETTING_MOVIES)
     }
 
     @Test
@@ -99,7 +99,7 @@ class HomeViewModelTest {
         // Then
         val resultState = viewModel.viewStateLiveData.value!!
         assertThat(resultState.isLoadingMovies).isFalse()
-        assertThat(resultState.errorMessage).isNotEqualTo(HomeViewStateErrors.ERROR_GETTING_GENRES)
+        assertThat(resultState.errorMessage).isNotEqualTo(MoviesStateErrors.ERROR_GETTING_GENRES)
     }
 
 
@@ -110,7 +110,7 @@ class HomeViewModelTest {
 
         // Then
         val resultState = viewModel.viewStateLiveData.value!!
-        assertThat(resultState.topMovies).isEqualTo(moviesFakes)
+        assertThat(resultState.movies).isEqualTo(moviesFakes)
     }
 
     @Test
@@ -130,7 +130,7 @@ class HomeViewModelTest {
         viewModel.start()
 
         // When
-        val error = HomeViewStateErrors.ERROR_GETTING_TOP_MOVIES
+        val error = MoviesStateErrors.ERROR_GETTING_MOVIES
         viewModel.onErrorShow(error, false)
 
         // Then
@@ -145,7 +145,7 @@ class HomeViewModelTest {
         viewModel.start()
 
         // When
-        val error = HomeViewStateErrors.ERROR_GETTING_GENRES
+        val error = MoviesStateErrors.ERROR_GETTING_GENRES
         viewModel.onErrorShow(error, false)
 
         // Then
@@ -156,7 +156,7 @@ class HomeViewModelTest {
     @Test
     fun `when load Movies error is shown and try again, should load Movies`() = runTest {
         // Given
-        val error = HomeViewStateErrors.ERROR_GETTING_TOP_MOVIES
+        val error = MoviesStateErrors.ERROR_GETTING_MOVIES
         val tryAgain = true
         moviesDataSource.isOffline = true
 
@@ -167,13 +167,13 @@ class HomeViewModelTest {
 
         // Then
         val resultState = viewModel.viewStateLiveData.value!!
-        assertThat(resultState.topMovies).isEqualTo(moviesFakes)
+        assertThat(resultState.movies).isEqualTo(moviesFakes)
     }
 
     @Test
     fun `when load Genres error is shown and try again, should load Genres`() = runTest {
         // Given
-        val error = HomeViewStateErrors.ERROR_GETTING_GENRES
+        val error = MoviesStateErrors.ERROR_GETTING_GENRES
         val tryAgain = true
         genresDataSource.isOffline = true
 
@@ -185,5 +185,60 @@ class HomeViewModelTest {
         // Then
         val resultState = viewModel.viewStateLiveData.value!!
         assertThat(resultState.genres).isEqualTo(genresFakes.sorted())
+    }
+
+    @Test
+    fun `when change Order and Sort, should update view state`() = runTest {
+        // Given
+        viewModel.start()
+
+        // When
+        viewModel.onSortClicked("test order", "test sort")
+
+        // Then
+        val resultState = viewModel.viewStateLiveData.value!!
+        assertThat(resultState.orderBy).isEqualTo("test order")
+        assertThat(resultState.sort).isEqualTo("test sort")
+    }
+
+    @Test
+    fun `when change Genre, should update view state`() = runTest {
+        // Given
+        viewModel.start()
+
+        // When
+        viewModel.onGenreClicked("test genre")
+
+        // Then
+        val resultState = viewModel.viewStateLiveData.value!!
+        assertThat(resultState.genre).isEqualTo("test genre")
+    }
+
+    @Test
+    fun `when Genre is null, should update view state`() = runTest {
+        // Given
+        viewModel.start()
+
+        // When
+        viewModel.onGenreClicked(null)
+
+        // Then
+        val resultState = viewModel.viewStateLiveData.value!!
+        assertThat(resultState.genre).isNull()
+    }
+
+    @Test
+    fun `when start without Order and Sort, should keep actual Order and Sort`() = runTest {
+        // Given
+        viewModel.start()
+        viewModel.onSortClicked("first order", "first sort")
+
+        // When
+        viewModel.start()
+
+        // Then
+        val resultState = viewModel.viewStateLiveData.value!!
+        assertThat(resultState.orderBy).isEqualTo("first order")
+        assertThat(resultState.sort).isEqualTo("first sort")
     }
 }

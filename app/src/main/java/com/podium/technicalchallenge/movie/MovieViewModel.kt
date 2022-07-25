@@ -29,31 +29,6 @@ class MovieViewModel @Inject constructor(
         }
     }
 
-    private suspend fun loadMovie(movieId: Int) {
-        val result = moviesRepository.getMovieDetails(movieId)
-        viewState = viewState.copy(isLoading = true)
-        viewStateLiveData.value = viewState
-
-        when (result) {
-            is Result.Success -> {
-                val movie = result.data
-                viewState = viewState.copy(
-                    isLoading = false,
-                    movie = movie
-                )
-            }
-
-            is Result.Error -> {
-                viewState = viewState.copy(
-                    isLoading = false,
-                    errorMessage = MovieStateErrors.ERROR_GETTING_MOVIE
-                )
-            }
-        }
-
-        viewStateLiveData.value = viewState
-    }
-
     fun onErrorShown(error: MovieStateErrors, tryAgain: Boolean) {
         viewState = viewState.copy(errorMessage = null)
         viewStateLiveData.value = viewState
@@ -74,5 +49,31 @@ class MovieViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    private suspend fun loadMovie(movieId: Int) {
+        viewState = viewState.copy(isLoading = true)
+        viewStateLiveData.value = viewState
+
+        val result = moviesRepository.getMovieDetails(movieId)
+
+        when (result) {
+            is Result.Success -> {
+                val movie = result.data
+                viewState = viewState.copy(
+                    isLoading = false,
+                    movie = movie
+                )
+            }
+
+            is Result.Error -> {
+                viewState = viewState.copy(
+                    isLoading = false,
+                    errorMessage = MovieStateErrors.ERROR_GETTING_MOVIE
+                )
+            }
+        }
+
+        viewStateLiveData.value = viewState
     }
 }

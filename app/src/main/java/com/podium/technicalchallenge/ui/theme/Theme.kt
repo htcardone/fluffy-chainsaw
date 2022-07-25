@@ -4,6 +4,7 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val DefaultColorPalette = darkColors(
     primary = Pink500,
@@ -11,6 +12,8 @@ private val DefaultColorPalette = darkColors(
     secondary = Purple200,
     background = DarkerBlue,
     surface = DarkerBlue,
+    onBackground = Color.White,
+    onSurface = Color.White
 
     /* Other default colors to override
     background = Color.White,

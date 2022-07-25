@@ -36,14 +36,14 @@ class DefaultMoviesRepository(
         else return Result.Success(topMoviesCache)
     }
 
-    override suspend fun getMoviesByGenre(
-        genre: String,
-        orderBy: OrderBy,
-        sort: Sort,
+    override suspend fun getMovies(
+        genre: String?,
+        orderBy: String,
+        sort: String,
         limit: Int
     ): Result<List<MovieEntity>> {
-
-        return remoteDataSource.getMoviesByGenre(genre, orderBy, sort, limit)
+        return if (genre == null) remoteDataSource.getMovies(orderBy, sort, limit)
+        else remoteDataSource.getMoviesByGenre(genre, orderBy, sort, limit)
     }
 
     override suspend fun getMovieDetails(movieId: Int): Result<MovieFullEntity> {

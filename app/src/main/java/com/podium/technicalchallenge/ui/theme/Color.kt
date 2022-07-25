@@ -7,6 +7,7 @@ val Purple500 = Color(0xFF6200EE)
 val Purple700 = Color(0xFF3700B3)
 
 val Black50 = Color(0x80000000)
+val Black70 = Color(0xB3000000)
 
 val Pink500 = Color(0xFFe91e63)
 val Pink700 = Color(0xFFc2185b)

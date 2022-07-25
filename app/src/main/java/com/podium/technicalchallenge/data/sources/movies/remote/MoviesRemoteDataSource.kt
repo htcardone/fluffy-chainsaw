@@ -1,13 +1,12 @@
 package com.podium.technicalchallenge.data.sources.movies.remote
 
+import android.util.Log
 import com.podium.technicalchallenge.data.Result
 import com.podium.technicalchallenge.data.entity.MovieEntity
 import com.podium.technicalchallenge.data.entity.MovieFullEntity
 import com.podium.technicalchallenge.data.entity.MovieResponse
 import com.podium.technicalchallenge.data.entity.MoviesResponse
-import com.podium.technicalchallenge.data.network.queries.OrderBy
 import com.podium.technicalchallenge.data.network.queries.Queries
-import com.podium.technicalchallenge.data.network.queries.Sort
 import com.podium.technicalchallenge.data.network.retrofit.GraphQLService
 import com.podium.technicalchallenge.data.network.retrofit.GraphQlHelper
 import com.podium.technicalchallenge.data.sources.movies.MoviesDataSource
@@ -18,8 +17,8 @@ class MoviesRemoteDataSource(
 
     // TODO Add a trace to measure how long this request is taking
     override suspend fun getMovies(
-        orderBy: OrderBy,
-        sort: Sort,
+        orderBy: String,
+        sort: String,
         limit: Int
     ): Result<List<MovieEntity>> {
 
@@ -34,15 +33,15 @@ class MoviesRemoteDataSource(
                 Result.Error(Exception())
             }
         } catch (e: Exception) {
-            // TODO log error on Crashlytics
+            Log.e(LOG_TAG, "getMovies", e)
             Result.Error(e)
         }
     }
 
     override suspend fun getMoviesByGenre(
         genre: String,
-        orderBy: OrderBy,
-        sort: Sort,
+        orderBy: String,
+        sort: String,
         limit: Int
     ): Result<List<MovieEntity>> {
 
@@ -57,7 +56,7 @@ class MoviesRemoteDataSource(
                 Result.Error(Exception())
             }
         } catch (e: Exception) {
-            // TODO log error on Crashlytics
+            Log.e(LOG_TAG, "getMoviesByGenre", e)
             Result.Error(e)
         }
     }
@@ -75,8 +74,12 @@ class MoviesRemoteDataSource(
                 Result.Error(Exception())
             }
         } catch (e: Exception) {
-            // TODO log error on Crashlytics
+            Log.e(LOG_TAG, "getMovie", e)
             Result.Error(e)
         }
+    }
+
+    companion object {
+        const val LOG_TAG = "MoviesRemoteDataSource"
     }
 }

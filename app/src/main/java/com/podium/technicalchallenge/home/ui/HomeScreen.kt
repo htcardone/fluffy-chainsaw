@@ -14,6 +14,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.podium.technicalchallenge.R
@@ -103,8 +104,9 @@ private fun TopMoviesRow(
     onMovieClicked: (movieId: Int) -> Unit
 ) {
     LazyRow(
+        modifier = Modifier.testTag("top_movies_row"),
         horizontalArrangement = Arrangement.spacedBy(HalfPadding),
-        contentPadding = PaddingValues(HalfPadding)
+        contentPadding = PaddingValues(HalfPadding),
     ) {
         if (isLoading) {
             items(5) {

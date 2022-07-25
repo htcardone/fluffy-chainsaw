@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -169,7 +170,9 @@ private fun MovieContent(movie: MovieFullEntity, sendEvent: (MovieViewEvent) -> 
     )
 
     PersonItem(
-        modifier = Modifier.padding(horizontal = HalfPadding, vertical = 0.dp),
+        modifier = Modifier
+            .padding(horizontal = HalfPadding, vertical = 0.dp)
+            .testTag("director_item"),
         image = null,
         name = movie.director.name
     )
@@ -180,7 +183,9 @@ private fun MovieContent(movie: MovieFullEntity, sendEvent: (MovieViewEvent) -> 
 @Composable
 private fun GenresRow(genres: List<String>, onGenreClicked: (String) -> Unit) {
     FlowRow(
-        modifier = Modifier.padding(horizontal = DefaultPadding, vertical = 0.dp),
+        modifier = Modifier
+            .padding(horizontal = DefaultPadding, vertical = 0.dp)
+            .testTag("genres_row"),
         mainAxisSize = SizeMode.Expand,
         crossAxisSpacing = 0.dp,
         mainAxisSpacing = 8.dp
@@ -197,6 +202,7 @@ private fun GenresRow(genres: List<String>, onGenreClicked: (String) -> Unit) {
 @Composable
 private fun CastRow(cast: List<CastEntity>) {
     LazyRow(
+        modifier = Modifier.testTag("cast_row"),
         horizontalArrangement = Arrangement.spacedBy(4.dp),
         contentPadding = PaddingValues(HalfPadding)
     ) {

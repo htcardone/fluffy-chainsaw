@@ -1,0 +1,53 @@
+{
+  "data": {
+    "movie": {
+      "id": 508442,
+      "title": "Movie Title On Details Screen",
+      "releaseDate": "2020-12-25",
+      "genres": [
+        "Family",
+        "Animation",
+        "Comedy",
+        "Drama",
+        "Music",
+        "Fantasy"
+      ],
+      "voteAverage": 8.3,
+      "voteCount": 4437,
+      "popularity": 2050.739,
+      "posterPath": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/hm58Jw4Lw8OIeECIq5qyPYhAeRJ.jpg",
+      "overview": "Movie description on details screen",
+      "runtime": 102,
+      "cast": [
+        {
+          "name": "Jamie Foxx",
+          "profilePath": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/hPwCMEq6jLAidsXAX5BfoYgIfg2.jpg"
+        },
+        {
+          "name": "Tina Fey",
+          "profilePath": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/yPTAi1iucXf85UpiFPtyiTSM6do.jpg"
+        },
+        {
+          "name": "Ahmir-Khalib Thompson",
+          "profilePath": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/fAO3uL2UbtqLzjTQRvamyEfiLgA.jpg"
+        },
+        {
+          "name": "Phylicia Rashād",
+          "profilePath": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/orbTpG0jaYkPR167TNiEg0AKG3M.jpg"
+        },
+        {
+          "name": "Daveed Diggs",
+          "profilePath": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/1LLtCpfMOsumo42iIzr1djkesGM.jpg"
+        },
+        {
+          "name": "Richard Ayoade",
+          "profilePath": "https://image.tmdb.org/t/p/w300_and_h450_bestv2/qHKoy9kP4bsv4G9EkvU4FMUmYkS.jpg"
+        }
+      ],
+      "director": {
+        "id": 12890,
+        "name": "Pete Docter"
+      }
+    }
+  }
+}

@@ -16,6 +16,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -43,7 +44,6 @@ fun MoviesScreen(
     sendEvent: (MoviesViewEvent) -> Unit
 ) {
 
-    var expanded by remember { mutableStateOf(true) }
     var bottomSheetContent by remember { mutableStateOf(BottomSheetContentType.GENRE) }
 
     val scaffoldState = rememberScaffoldState()
@@ -284,7 +284,7 @@ private fun MoviesGrid(
     sendEvent: (MoviesViewEvent) -> Unit
 ) {
     LazyVerticalGrid(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize().testTag("movies_grid"),
         columns = GridCells.Fixed(3),
         verticalArrangement = Arrangement.spacedBy(DefaultPadding),
         horizontalArrangement = Arrangement.spacedBy(HalfPadding),

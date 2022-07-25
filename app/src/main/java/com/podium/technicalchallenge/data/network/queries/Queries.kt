@@ -17,7 +17,7 @@ object Queries {
 
     fun getMoviesByGenreQuery(genre: String, orderBy: String, sort: String, limit: Int) =
         """
-        query GetMoviesQuery {
+        query GetMoviesByGenre {
           movies(genre: "$genre", limit: $limit, orderBy:"$orderBy", sort: $sort) {
             id
             title
@@ -57,7 +57,7 @@ object Queries {
 
     fun getGenres() =
     """
-        query GetGenres {
+        query GetGenresQuery {
           genres
         }
     """

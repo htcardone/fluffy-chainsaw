@@ -5,6 +5,9 @@ Submitted by: Henrique Cardone (htcardone@gmail.com)
 
 This project was developed based on the [original one](https://github.com/podium/Android-Challenge), and on the [requirements](REQUIREMENTS.md) sent by email.
 
+## Screeenshots
+<img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768019.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768031.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768037.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768052.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768057.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768062.png?raw=true" alt="drawing" width="200"/> <img src="https://github.com/htcardone/fluffy-chainsaw/blob/main/screenshots/Screenshot_1658768112.png?raw=true" alt="drawing" width="200"/>
+
 ## Architecture
 This app was implemented based on the latest [Google's app architecture guide](https://developer.android.com/topic/architecture), so it contains the following layers:
 
@@ -23,7 +26,7 @@ All data accessed by the ViewModel is provided by two **Repositories**, one for 
 The network calls are made only using Retrofit, since the Apollo client was [removed](https://github.com/podium/Android-Challenge/commit/c4d7e4fff02d751d3a20b59d2139ba997f154ba4) from the project last month. Since this layer is decoupled from other parts of the code, it would be simple to change it back.
 
 ## Testing
-This project has the following tests
+This project has the following tests:
 - Unit Tests, using fake data sources, and no mocks:
   - Repositories
   - ViewModels
